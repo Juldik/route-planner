@@ -12,6 +12,18 @@ Following command will run application if you have docker on you PC
 
 `docker run route-planner -expose 8080:8080`
 
+If non docker build is required then JDK 17 is required and access to maven public repo. 
+
+run following command in root directory to build with tests.
+
+`mvn clean install` 
+
+run following command to start the application 
+
+`mvn spring-boot:start`
+
+#How to use
+
 Test request can be found in src/main/resources/test-request.http file e.g.
 
 For calculation rote from Czech rep. to Italy, you could make following request.
