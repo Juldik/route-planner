@@ -39,7 +39,8 @@ public class RoutePlannerResource {
     @ResponseStatus(HttpStatus.OK)
     public RouteResponseDto calculateRoute(@PathVariable("origin")
                                            @Pattern(regexp = COUNTRY_ABBREVIATION_PATTERN) String origin,
-                                        @PathVariable("destination") @Pattern(regexp = COUNTRY_ABBREVIATION_PATTERN) String destination) {
+                                           @PathVariable("destination")
+                                           @Pattern(regexp = COUNTRY_ABBREVIATION_PATTERN) String destination) {
         return new RouteResponseDto(routePlannerService.calculateRoute(origin, destination));
     }
 }

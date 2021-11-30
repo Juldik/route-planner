@@ -42,10 +42,11 @@ The result is path from origin to destination country. Using only three letter a
 ## Inconsistency with requirements
 * There was a requirement "If there is no land crossing, the endpoint returns HTTP 400", but it seems to me it is more of a not found than bad request thing. It could be easily changed by changing @ResponseStatus on the top of NoRouteFoundException.
 * There was no specification of the behaviour when you put the same destination and origin - so my result is mention this country as a path.
+  
 
 ## Possible improvements
 * EnableCaching for even higher efficiency. Minimal - cache feign request, but ideally the whole chart and dijkstra structures so only search in the prepared structure is made.
-
+* add api versioning actually uses directly endpoint /routing but it would be better to prefix it with /api/v1 or some other versioning prefix.
 
 ## How it was created initial thoughts
 **WBS:**

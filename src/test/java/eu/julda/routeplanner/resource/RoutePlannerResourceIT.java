@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -40,9 +41,20 @@ class RoutePlannerResourceIT {
 
     @Test
     void calculateRoute_notFound() {
-        //given + when + then
-        assertThrows(HttpClientErrorException.class, () ->
+        //given + when
+        HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () ->
                 new RestTemplate().getForEntity(getCalculationPath(), Object.class, "CZE", "USA"));
+        //then
+        assertThat(exception.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    @Test
+    void calculateRoute_notValidCountrySpecification() {
+        //given + when
+        HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () ->
+                new RestTemplate().getForEntity(getCalculationPath(), Object.class, "C", "ITA"));
+        //then
+        assertThat(exception.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
     private String getCalculationPath() {
