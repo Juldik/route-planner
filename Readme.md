@@ -10,7 +10,7 @@ Following command will build the application using docker multistage build.
 
 Following command will run application if you have docker on you PC
 
-`docker run route-planner -expose 8080:8080`
+`docker run -p 8080:8080 route-planner `
 
 If non docker build is required then JDK 17 is required and access to maven public repo. 
 
